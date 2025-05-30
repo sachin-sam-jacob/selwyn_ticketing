@@ -1,0 +1,31 @@
+<!-- templates/eventcustomerlist.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Customers for {{ event.event_name }} ({{ event.event_date.strftime('%d/%m/%Y') }})</h2>
+
+{% if customers %}
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Date of Birth</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in customers %}
+        <tr>
+            <td>
+                <a href="{{ url_for('customer_summary', customer_id=customer.customer_id) }}">
+                    {{ customer.family_name }}, {{ customer.first_name }}
+                </a>
+            </td>
+            <td>{{ customer.date_of_birth.strftime('%d/%m/%Y') }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No customers have purchased tickets for this event.</p>
+{% endif %}
+{% endblock %}

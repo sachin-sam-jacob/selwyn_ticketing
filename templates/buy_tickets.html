@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Buy Tickets</h2>
+
+    {% if message %}
+    <div class="alert {% if 'successfully' in message %}alert-success{% else %}alert-danger{% endif %} mb-4">
+        {{ message }}
+    </div>
+    {% endif %}
+
+    <form method="POST" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="customer_id" class="form-label">Select Customer</label>
+            <select class="form-select" id="customer_id" name="customer_id" required>
+                <option value="">Choose a customer...</option>
+                {% for customer in customers %}
+                <option value="{{ customer.customer_id }}">
+                    {{ customer.family_name }}, {{ customer.first_name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="event_id" class="form-label">Select Event</label>
+            <select class="form-select" id="event_id" name="event_id" required>
+                <option value="">Choose an event...</option>
+                {% for event in events %}
+                <option value="{{ event.event_id }}">
+                    {{ event.event_name }} ({{ event.event_date.strftime('%Y-%m-%d') }})
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="ticket_count" class="form-label">Number of Tickets</label>
+            <input type="number" class="form-control" id="ticket_count" name="ticket_count" 
+                   min="1" max="10" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Purchase Tickets</button>
+    </form>
+</div>
+{% endblock %}

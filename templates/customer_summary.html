@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Ticket Summary for {{ customer.family_name }}, {{ customer.first_name }}</h2>
+
+<p><strong>Total Tickets Purchased:</strong> {{ total_tickets }}</p>
+
+{% if purchases %}
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Tickets</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in purchases %}
+        <tr>
+            <td>{{ p.event_name }}</td>
+            <td>{{ p.event_date.strftime('%d/%m/%Y') }}</td>
+            <td>{{ p.ticket_count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No tickets purchased by this customer.</p>
+{% endif %}
+{% endblock %}

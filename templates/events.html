@@ -1,0 +1,28 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Upcoming Events</h2>
+<table class="table table-striped mt-3">
+
+    <thead>
+        <tr>
+            <th>Event Name</th>
+            <th>Date</th>
+            <th>Capacity</th>
+            <th>Age Restriction</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.event_name }}</td>
+            <td>{{ event.event_date.strftime('%d/%m/%Y') }}</td>
+            <td>{{ event.capacity }}</td>
+            <td>{{ event.age_restriction }}</td>
+            <td><a href="{{ url_for('event_customer_list', event_id=event.event_id) }}">View Customers</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

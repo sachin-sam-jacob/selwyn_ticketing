@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h1 class="display-4">Welcome to Selwyn Ticketing</h1>
+    <p class="lead">Your one-stop solution for event ticketing</p>
+    <hr class="my-4">
+    <p>Browse our events, purchase tickets, and manage customer information all in one place.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{{ url_for('events') }}" role="button">View Events</a>
+        <a class="btn btn-success btn-lg" href="{{ url_for('buy_tickets') }}" role="button">Buy Tickets</a>
+    </p>
+</div>
+{% endblock %}

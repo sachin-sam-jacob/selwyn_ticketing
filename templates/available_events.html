@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Upcoming Events with Available Tickets</h2>
+
+{% if events %}
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Event Name</th>
+            <th>Date</th>
+            <th>Remaining Tickets</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.event_name }}</td>
+            <td>{{ event.event_date.strftime('%d/%m/%Y') }}</td>
+            <td>{{ event.remaining }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No upcoming events with available tickets.</p>
+{% endif %}
+{% endblock %}
